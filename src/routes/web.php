@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkController;
+use App\Http\Controllers\BreakController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,9 @@ use App\Http\Controllers\WorkController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [WorkController::class, 'index']);
+    Route::post('/start', [WorkController::class, 'workStart']);
+    Route::post('/end', [WorkController::class, 'workEnd']);
+    Route::post('/breakstart', [BreakController::class, 'breakStart']);
+    Route::post('/breakend', [BreakController::class, 'breakEnd']);
 });
+
