@@ -15,4 +15,5 @@ class Work extends Model
     {
         $this->belongsTo(User::class);
     }
+
 }

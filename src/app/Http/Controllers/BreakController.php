@@ -11,14 +11,14 @@ class BreakController extends Controller
 {
     public function breakStart()
     {
-        $work = Work::work();
+        $work = Rest::work();
 
-        $timestamp = Rest::create([
-            'work_id' => $work->id,
-            'breakStart' => Carbon::now(),
-        ]);
+        // $timestamp = Rest::create([
+        //     'work_id' => $work->id,
+        //     'breakStart' => Carbon::now(),
+        // ]);
 
-        return redirect()->back()->with('my_status', '休憩を開始しました');
+        // return redirect()->back()->with('my_status', '休憩を開始しました');
 
 
         $newTimestampDay = Carbon::today();
