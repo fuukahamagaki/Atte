@@ -7,6 +7,11 @@
 @section('content')
 <div class="attendance__alert">
   <p>{{ Auth::user()->name }}さんお疲れ様です！</p>
+  @if (session('my_status'))
+  <div class="alert alert-success">
+    {{ session('my_status') }}
+  </div>
+  @endif
 </div>
 
 <div class="attendance__content">

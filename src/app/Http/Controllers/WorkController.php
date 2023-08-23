@@ -18,28 +18,22 @@ class WorkController extends Controller
     {
         $user = Auth::user();
         
-        $oldTimestamp = Work::where('user_id', $user->id)->latest()->first();
-        if ($oldTimestamp) {
-            $oldTimestampWorkStart = new Carbon($oldTimestamp->workStart);
-            $oldTimestampDay = $oldTimestampWorkStart->startOfDay();
-        } else {
+        //ユーザーに関連する最新の出勤レコードを取得
+        $latestTimestamp = Work::where('user_id', $user->id)->latest()->first();
+        
+        //最新の出勤レコードが存在しないか、すでに退勤打刻がされている場合
+        if (!$latestTimestamp || $latestTimestamp->workEnd) {
             $timestamp = Work::create([
                 'user_id' => $user->id,
                 'workStart' => Carbon::now(),
             ]);
 
-            return redirect()->back()->with('my_status', '出勤打刻が完了しました');
+            return redirect()->back()->with('my_status', '出勤しました');
 
         }
 
-        $newTimestampDay = Carbon::today();
-
-        $timestamp = Work::create([
-            'user_id' => $user->id,
-            'workStart' => Carbon::now(),
-        ]);
-
-        return redirect()->back()->with('my_status', '出勤打刻が完了しました');
+        //既に出勤打刻がされている場合
+        return redirect()->back()->with('my_status', '既に出勤しています');
     }
 
     public function workEnd()
@@ -47,13 +41,16 @@ class WorkController extends Controller
         $user = Auth::user();
         $timestamp = Work::where('user_id', $user->id)->latest()->first();
 
-        if( !empty($timestamp->workEnd)) {
-            return redirect()->back()->with('error', '既に退勤の打刻がされているか、出勤打刻されていません');
+        //退勤打刻が既に行われている場合、または出勤打刻がされていない場合
+        if(!$timestamp || $timestamp->workEnd) {
+            return redirect()->back()->with('error', '退勤の打刻ができません');
         }
+        
+        //退勤打刻
         $timestamp->update([
             'workEnd' => Carbon::now()
         ]);
 
-        return redirect()->back()->with('my_status', '退勤打刻が完了しました');
+        return redirect()->back()->with('my_status', '退勤しました');
     }
 }

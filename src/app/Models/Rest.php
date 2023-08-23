@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Work;
 
 class Rest extends Model
 {
@@ -13,6 +14,6 @@ class Rest extends Model
 
     public function work()
     {
-        return $this->belongsTo(Work::class);
+        return $this->belongsTo(Work::class, 'work_id');
     }
 }
