@@ -16,29 +16,31 @@
     margin: 0;
 }
 
-.attendance__panel {
+.attendance__content {
     margin: 0 auto;
-    width: 70%;
+    padding: 30px 15px;
+    max-width: 1230px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.attendance__panel {
+    display: flex;
+    flex-direction: row;
 }
 
 .attendance__button {
-    width: 100%;
+    flex: 1;
     text-align: center;
+    margin: 0 5px;
 }
 
 .attendance__button-submit {
     padding: 5px;
-    width: 40%;
     height: 150px;
     border: none;
     border-radius: 3px;
     background: #fff;
     color: #000;
     cursor: pointer;
-}
-
-.attendance__content {
-    margin: 0 auto;
-    padding: 30px 15px;
-    max-width: 1230px;
 }

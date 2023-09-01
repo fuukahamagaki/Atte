@@ -21,4 +21,9 @@ class Work extends Model
     {
         return $this->hasMany(Rest::class);
     }
+
+    public function workStart()
+    {
+        return $this->attributes['workStart'];
+    }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\BreakController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,4 @@ Route::middleware('auth')->group(function () {
     Route::post('/breakend', [BreakController::class, 'breakEnd']);
 });
 
+Route::get('/attendance', [UserController::class, 'index']);

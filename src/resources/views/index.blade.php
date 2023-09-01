@@ -26,6 +26,8 @@
       @method('POST')
       <button class="attendance__button-submit" type="submit">勤務終了</button>
     </form>
+  </div>
+  <div class="attendance__panel">
     <form class="attendance__button" action="/breakstart" method="post">
       @csrf
       @method('POST')
