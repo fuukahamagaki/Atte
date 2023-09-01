@@ -25,3 +25,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/attendance', [UserController::class, 'index']);
+Route::get('/attendance/{date}', [UserController::class, 'showAllUsers']);
+Route::get('/mypage', [UserController::class, 'myPage']);
